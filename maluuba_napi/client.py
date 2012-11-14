@@ -1,5 +1,6 @@
 import datetime
 import json
+import logging
 
 import requests
 
@@ -17,6 +18,9 @@ class NAPIClient(object):
 	VERSION  = 'v0'
 
 	class InterpretResponse(object):
+		"""
+		A wrapper object for responses from the /interpret endpoint.
+		"""
 		def __init__(self, action, category, entities={}):
 			self.action = action
 			self.category = category
@@ -27,6 +31,9 @@ class NAPIClient(object):
 				self.entities['timeRange'] = map(NAPIClient._parse_timeRange, self.entities['timeRange'])
 
 	class NormalizeResponse(object):
+		"""
+		A wrapper object for the responses from the /normalize endpoint.
+		"""
 		def __init__(self, entities={}, context={}):
 			self.entities = entities
 			self.context = context
@@ -50,15 +57,15 @@ class NAPIClient(object):
 	def __query(self, endpoint, **kwargs):
 		kwargs['apikey'] = self.api_key
 		r = requests.get(self.__generate_url(endpoint), params=kwargs)
-		print 'Called %s' % r.url
+		logging.debug("Called %s" % r.url)
 		if r.status_code == 200:
 			try:
 				return json.loads(r.content)
 			except Exception as e:
-				print "Failed to parse response: %s" % r.content
+				logging.warn("Failed to parse response: %s" % r.content)
 				pass
 		else:
-			print "Failure: %s" % r.status_code
+			logging.warn("Failure: %s" % r.status_code)
 
 	def __generate_url(self, endpoint):
 		return '%s/%s/%s' % (NAPIClient.BASE_URL, NAPIClient.VERSION, endpoint)

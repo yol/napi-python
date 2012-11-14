@@ -1,8 +1,8 @@
 from distutils.core import setup
 
 setup(
-    name='MaluubaNAPI',
-    version='0.0.3',
+    name='maluuba_napi',
+    version='0.0.1',
     author='Maluuba',
     author_email='napi@maluuba.com',
     packages=['maluuba_napi'],
