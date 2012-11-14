@@ -13,8 +13,8 @@ class TestBaseMixin(object):
 
 	def checkPhrase(self, phrase, category, action):
 		r = self.client.interpret(phrase)
-		self.assertEquals(category, r['category'])
-		self.assertEquals(action, r['action'])
+		self.assertEquals(category, r.category)
+		self.assertEquals(action, r.action)
 
 class ClientTestSuite(TestSetup, TestBaseMixin, unittest.TestCase):
 	def test_business_search(self):

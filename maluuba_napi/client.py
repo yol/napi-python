@@ -15,6 +15,17 @@ class NAPIClient(object):
 	BASE_URL = 'http://napi.maluuba.com'
 	VERSION  = 'v0'
 
+	class InterpretResponse(object):
+		def __init__(self, action, category, entities={}):
+			self.action = action
+			self.category = category
+			self.entities = entities
+
+	class NormalizeResponse(object):
+		def __init__(self, entities={}, context={}):
+			self.entities = entities
+			self.context = context
+
 	def __init__(self, api_key):
 		self.api_key = api_key
 
@@ -25,8 +36,8 @@ class NAPIClient(object):
 		if r.status_code == 200:
 			try:
 				return json.loads(r.content)
-			except:
-				print "Failed to parse JSON: %s" % r.content
+			except Exception as e:
+				print "Failed to parse response: %s" % r.content
 				pass
 		else:
 			print "Failure: %s" % r.status_code
@@ -39,10 +50,10 @@ class NAPIClient(object):
 		The primary endpoint of the NAPI. Classifies the given phrase, and extracts
 		entities.
 		"""
-		return self.__query('interpret', phrase=phrase)
+		return NAPIClient.InterpretResponse(**(self.__query('interpret', phrase=phrase)))
 
 	def normalize(self, phrase, _type, timezone=''):
 		"""
 		Normalizes a time, date, or range.
 		"""
-		return self.__query('normalize', phrase=phrase, type=_type, timezone=timezone)
+		return NAPIClient.NormalizeResponse(**(self.__query('normalize', phrase=phrase, type=_type, timezone=timezone)))
