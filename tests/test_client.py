@@ -64,7 +64,7 @@ class ClientTestSuite(TestSetup, TestBaseMixin, unittest.TestCase):
 		self.checkPhrase('I want to see skyfall', 'ENTERTAINMENT', 'ENTERTAINMENT_MOVIE', title='skyfall')
 
 	def test_entertainment_event(self):
-		self.checkPhrase('when do the leafs play', 'ENTERTAINMENT', 'ENTERTAINMENT_EVENT', event='leafs play')
+		self.checkPhrase('when do the leafs play', 'ENTERTAINMENT', 'ENTERTAINMENT_EVENT', event='leafs')
 		self.checkPhrase('I want to see justin bieber', 'ENTERTAINMENT', 'ENTERTAINMENT_EVENT', event='justin bieber')
 
 	def test_entertainment_ambiguous(self):
