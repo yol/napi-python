@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import requests
@@ -20,11 +21,28 @@ class NAPIClient(object):
 			self.action = action
 			self.category = category
 			self.entities = entities
+			if 'dateRange' in self.entities:
+				self.entities['dateRange'] = map(NAPIClient._parse_dateRange, self.entities['dateRange'])
+			if 'timeRange' in self.entities:
+				self.entities['timeRange'] = map(NAPIClient._parse_timeRange, self.entities['timeRange'])
 
 	class NormalizeResponse(object):
 		def __init__(self, entities={}, context={}):
 			self.entities = entities
 			self.context = context
+			if 'dateRange' in self.entities:
+				self.entities['dateRange'] = map(NAPIClient._parse_dateRange, self.entities['dateRange'])
+			if 'timeRange' in self.entities:
+				self.entities['timeRange'] = map(NAPIClient._parse_timeRange, self.entities['timeRange'])
+
+
+	@staticmethod
+	def _parse_dateRange(dateRange):
+		return {x: datetime.datetime.strptime(dateRange[x], '%Y-%m-%d').date() for x in dateRange}
+
+	@staticmethod
+	def _parse_timeRange(timeRange):
+		return {x: datetime.datetime.strptime(timeRange[x], '%I:%M:%S%p').time() for x in timeRange}
 
 	def __init__(self, api_key):
 		self.api_key = api_key
