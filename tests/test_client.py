@@ -72,9 +72,9 @@ class ClientTestSuite(TestSetup, TestBaseMixin, unittest.TestCase):
 	def test_email_display(self):
 		self.checkPhrase('show me emails from josh', 'EMAIL', 'EMAIL_DISPLAY')
 
-	def test_help(self):
-		self.checkPhrase('help', 'HELP', 'HELP')
-		self.checkPhrase('what can you do', 'HELP', 'HELP')
+	def test_help_help(self):
+		self.checkPhrase('help', 'HELP', 'HELP_HELP')
+		self.checkPhrase('what can you do', 'HELP', 'HELP_HELP')
 
 	def test_travel_flight(self):
 		self.checkPhrase('i would like a first class ticket to new york leaving from toronto on the day before christmas returning a week after christmas', 'TRAVEL', 'TRAVEL_FLIGHT')
