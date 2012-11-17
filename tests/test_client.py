@@ -117,7 +117,7 @@ class ClientTestSuite(TestSetup, TestBaseMixin, unittest.TestCase):
 		self.checkPhrase('When is sunrise for Friday?', 'WEATHER', 'WEATHER_SUNRISE')
 
 	def test_reminder_set(self):
-		self.checkPhrase('Remind me to put out the garbage tonight', 'REMINDER', 'REMINDER_SET', message='put out the garbage', time='11:00:00PM')
+		self.checkPhrase('Remind me to put out the garbage tonight', 'REMINDER', 'REMINDER_SET', message='put out the garbage', time='06:00:00PM')
 
 	def test_reminder_search(self):
 		self.checkPhrase('Find me reminders for this week', 'REMINDER', 'REMINDER_SEARCH')
