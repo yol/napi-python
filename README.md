@@ -61,6 +61,5 @@ to our attention:
 
   * Send an e-mail to our mailing list at [napi@maluuba.com](mailto:napi@maluuba.com)
   * File an issue against our GitHub issue tracker (above)
-  * Post on our [Support Forums](http://developer.maluuba.com/forum)
   * Join our [IRC channel (#maluuba on FreeNode)](irc://freenode.net/#maluuba) and talk to our developers in real-time
   * Follow us on Twitter [@MaluubaInc](http://twitter.com/maluubainc) and receive the latest information and updates
