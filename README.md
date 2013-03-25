@@ -16,9 +16,8 @@ feature requests come in, and we see how people want to use this technology.
 Access
 ------
 
-Please sign up at the [Maluuba Developer Site](http://developer.maluuba.com) and apply for access.
-We are currently in an alpha stage right now, and giving out API keys to interested third parties.
-Once you have been approved, you will receive an API key that you can use with this client.
+Please sign up at the [Maluuba Developer Site](http://developer.maluuba.com) to receive access.
+Once you sign up, you will receive an API key that you can use with this client.
 
 Installation
 ------------
