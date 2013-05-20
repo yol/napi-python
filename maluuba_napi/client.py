@@ -45,11 +45,11 @@ class NAPIClient(object):
 
 	@staticmethod
 	def _parse_dateRange(dateRange):
-		return {x: datetime.datetime.strptime(dateRange[x], '%Y-%m-%d').date() for x in dateRange}
+		return dict((x, datetime.datetime.strptime(dateRange[x], '%Y-%m-%d').date()) for x in dateRange)
 
 	@staticmethod
 	def _parse_timeRange(timeRange):
-		return {x: datetime.datetime.strptime(timeRange[x], '%I:%M:%S%p').time() for x in timeRange}
+		return dict((x, datetime.datetime.strptime(timeRange[x], '%I:%M:%S%p').time()) for x in timeRange)
 
 	def __init__(self, api_key):
 		self.api_key = api_key
@@ -60,7 +60,9 @@ class NAPIClient(object):
 		logging.debug("Called %s" % r.url)
 		if r.status_code == 200:
 			try:
-				return json.loads(r.content)
+				loaded = json.loads(r.content)
+				loaded.pop("status", None)
+				return loaded
 			except Exception as e:
 				logging.warn("Failed to parse response: %s" % r.content)
 				pass
